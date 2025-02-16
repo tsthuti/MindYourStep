@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mind your steps | a game for children</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body
+    class="kitchen"
+    style="
+      background-image: url('assets/oven.png');
+      background-size: cover;
+    "
+    onclick="startGame()"
+  >
+    <nav class="nav-container">
+        <a href="select-location.html"><img src="assets/home-button.png" class="nav-icon"/></a>
+        <a href="menu.html"><img src="assets/settings-button.png" class="nav-icon"/></a>
+        <a href="progress.html"><img src="assets/check-button.png" class="nav-icon"/></a>
+    </nav>
+    <div class="oven-container">
+      <img
+        src="assets/jennifer.png"
+        id="jennifer"
+        class="jennifer-welcome animate__animated animate__slideInUp"
+      />
+      <img
+        src="assets/big-sign.png"
+        id="big-sign"
+        class="big-sign-welcome animate__animated animate__slideInUp"
+      />
+      <p class="muffins animate__animated animate__slideInUp" id="jen-dialogue">
+        help me bake muffins! <br />
+        follow along, but mind your steps!
+      </p>
+      <!-- Completion screen will appear here -->
+      <div class="congrats-container">
+        <div id="congrats-screen" class="congrats-screen" style="display: none">
+          <h2>congratulations!</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Popup -->
+    <div id="popup" class="popup">
+      <p id="popup-text">Placeholder Text</p>
+      <button id="next-button" onclick="nextStep()">Next</button>
+
+      <!-- Quiz Section -->
+      <div id="quiz-section" class="hidden">
+        <p id="quiz-question">Quiz Question Placeholder</p>
+        <div class="quiz-options" id="quiz-options"></div>
+      </div>
+    </div>
+
+    <div id="custom-alert" class="custom-alert">
+      <div class="alert-box">
+        <p id="alert-message"></p>
+        <button id="alert-close" class="alert-close">Close</button>
+      </div>
+    </div>
+
+    <script>
+      let currentStep = 0;
+      let attempt = 0;
+
+      const steps = [
+        {
+          info: "step 1: wash your hands before you start!",
+          quiz: {
+            question: "why is washing hands important?",
+            options: [
+              { text: "to remove bacteria", correct: true },
+              { text: "to dry your hands", correct: false },
+              { text: "just because", correct: false },
+            ],
+          },
+        },
+        {
+          info: "step 2: preheat the oven to the correct temperature.",
+          quiz: {
+            question: "what is the best reason to preheat the oven?",
+            options: [
+              { text: "so food cooks evenly", correct: true },
+              { text: "so it looks hot", correct: false },
+              { text: "to make the kitchen warm", correct: false },
+            ],
+          },
+        },
+        {
+          info: "step 3: use oven mitts when handling hot trays!",
+          quiz: {
+            question: "why should you use oven mitts?",
+            options: [
+              { text: "to avoid burns", correct: true },
+              { text: "to look cool", correct: false },
+              { text: "to wipe your hands", correct: false },
+            ],
+          },
+        },
+        {
+          info: "step 4: always check if your food is cooked through.",
+          quiz: {
+            question: "how can you tell if food is cooked?",
+            options: [
+              { text: "check the inside temperature", correct: true },
+              { text: "guess", correct: false },
+              { text: "smell it", correct: false },
+            ],
+          },
+        },
+        {
+          info: "step 5: clean your surfaces after cooking to avoid bacteria.",
+          quiz: {
+            question: "why is cleaning important after cooking?",
+            options: [
+              { text: "to prevent bacteria spread", correct: true },
+              { text: "because it looks nice", correct: false },
+              { text: "to impress guests", correct: false },
+            ],
+          },
+        },
+      ];
+
+      function startGame() {
+        document.getElementById("jennifer").style.display = "none";
+        document.getElementById("big-sign").style.display = "none";
+        document.getElementById("jen-dialogue").style.display = "none";
+
+        document.body.onclick = null; // Disable clicking after start
+
+        showStep();
+      }
+
+      // Function to show the completion screen
+      function showCompletionScreen() {
+        const congratsScreen = document.getElementById("congrats-screen");
+        congratsScreen.style.display = "block"; // Show the completion screen
+      }
+
+      function showStep() {
+        const popup = document.getElementById("popup");
+        const popupText = document.getElementById("popup-text");
+        const nextButton = document.getElementById("next-button");
+        const quizSection = document.getElementById("quiz-section");
+        const finishedMessage = document.getElementById("finished-message");
+
+        if (currentStep < steps.length) {
+          popup.style.display = "block";
+          popupText.innerText = steps[currentStep].info;
+
+          // Hide quiz, show "Next" first
+          nextButton.style.display = "block";
+          quizSection.classList.add("hidden");
+        } else {
+          showCompletionScreen(); // Show final score
+          popup.style.display = "none";
+        }
+      }
+
+      function nextStep() {
+        const nextButton = document.getElementById("next-button");
+        const quizSection = document.getElementById("quiz-section");
+
+        nextButton.style.display = "none";
+        quizSection.classList.remove("hidden");
+
+        const quizData = steps[currentStep].quiz;
+        document.getElementById("quiz-question").innerText = quizData.question;
+
+        const quizOptionsDiv = document.getElementById("quiz-options");
+        quizOptionsDiv.innerHTML = "";
+
+        quizData.options.forEach((option, index) => {
+          const button = document.createElement("button");
+          button.innerText = option.text;
+          button.onclick = () => checkAnswer(option.correct, attempt++);
+          quizOptionsDiv.appendChild(button);
+        });
+      }
+
+      function checkAnswer(isCorrect, attempt) {
+        const customAlert = document.getElementById("custom-alert");
+        const alertMessage = document.getElementById("alert-message");
+
+        if (isCorrect) {
+          alertMessage.innerText = "correct! great job!";
+          answerCorrect = true;
+        } else {
+          alertMessage.innerText = "oops, try again!";
+          answerCorrect = false;
+        }
+
+        // Show the custom alert box
+        customAlert.style.display = "flex";
+
+        // Add an event listener for closing the alert
+        const alertCloseButton = document.getElementById("alert-close");
+
+        // Function to close the alert and proceed to the next step
+        function closeAlert() {
+          const customAlert = document.getElementById("custom-alert");
+
+          // Hide the alert box
+          customAlert.style.display = "none";
+
+          // Proceed to the next step only if the answer is correct
+          if (answerCorrect) {
+            if (attempt < 1) {
+              currentStep++;
+            }
+            showStep(); // Call the function to show the next step
+          }
+        }
+
+        // Ensure the listener is only added once
+        alertCloseButton.removeEventListener("click", closeAlert);
+        alertCloseButton.addEventListener("click", closeAlert);
+      }
+
+      function restartGame() {
+        // Reset the game state
+        currentStep = 0;
+        document.getElementById("congrats-screen").style.display = "none"; // Hide the congrats screen
+        showStep(); // Restart the game
+      }
+    </script>
+  </body>
+</html>

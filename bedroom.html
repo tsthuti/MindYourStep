@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mind your steps | a game for children</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel=" web icon" href="assets/logo.png" />
+    </head>
+    <body style="background-image: url('assets/girl-bedroom.png'); background-size: cover;">
+        <audio id="bg-music" loop>
+            <source src="assets/background_music.mp3" type="audio/mpeg">
+        </audio>
+
+        <nav class="nav-container">
+            <a href="select-location.html"><img src="assets/home-button.png" class="nav-icon"/></a>
+            <a href="menu.html"><img src="assets/settings-button.png" class="nav-icon"/></a>
+            <a href="progress.html"><img src="assets/check-button.png" class="nav-icon"/></a>
+        </nav>
+
+        <div class="bedroom-container ">
+            <a href="laptop.html"><img src="assets/star.png" class="laptop-star"/></a>
+                <img src="assets/small-sign.png" id="small-sign" class="small-sign animate__animated animate__fadeInLeft"/>
+                <p class="bedroom-text animate__animated animate__fadeInLeft">your<br>bedroom</p>
+        <div>
+    </body>
+    <script>
+        let audio = document.getElementById("bg-music");
+        audio.volume = 0.8;
+        function startAudio() {
+            audio.play().then(() => {
+                console.log("Audio playing.");
+                localStorage.setItem("musicPlaying", "true");
+            }).catch(error => console.log("Autoplay blocked: " + error));
+        }
+        if (localStorage.getItem("musicPlaying") === "true") {
+            startAudio();
+        }
+        document.addEventListener("click", startAudio, { once: true });
+        document.addEventListener("keydown", startAudio, { once: true });
+        document.addEventListener("touchstart", startAudio, { once: true });          
+    </script>
+</html>

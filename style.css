@@ -1,0 +1,704 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans');
+
+body {
+    background-color: rgb(14, 66, 0);
+    background-image: url('assets/background-town.jpg');
+    background-size: cover;
+}
+
+.hero{
+    text-align: center;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.hero-logo {
+    width: 800px;
+    height: 400px;
+    -webkit-filter: drop-shadow(5px 5px 5px #360b0b);
+    filter: drop-shadow(5px 5px 5px #360b0b)
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-button {
+    width: 230px;
+    height: 100px;
+    padding-top: 40px;
+    padding-right: 10px;
+    justify-content: center;
+    align-items: center;
+    -webkit-filter: drop-shadow(5px 5px 5px #360b0b);
+    filter: drop-shadow(5px 5px 5px #360b0b)
+}
+
+.welcome-container {
+    position: relative;
+}
+
+.big-sign-welcome {
+    width: 1400px;
+    height: 300px;
+    padding-left: 40px;    
+    -webkit-filter: drop-shadow(5px 5px 5px #360b0b);
+    filter: drop-shadow(5px 5px 5px #360b0b);
+    position: fixed;  
+    padding-bottom: 30px;
+    bottom: 0;
+    left: 0;  
+    z-index: 0; 
+}
+
+.jennifer-welcome {
+    position: fixed; 
+    padding-top: 600px;
+    padding-left: 30px;
+    bottom: 20px; 
+    left: 20px; 
+    height: 500px;
+    width: 400px;
+    z-index: 1; 
+}
+
+/* Define the slide-in animation from the bottom */
+@keyframes slideIn {
+    from {
+        bottom: -200px;  /* Start position off-screen at the bottom */
+    }
+    to {
+        bottom: 20px;    /* End position 20px from the bottom */
+    }
+}
+
+.jen-dialogue {
+    font-family: pixelify sans;
+    font-size: 2.8rem;
+    color: white;
+    display: flex;
+    text-shadow: 2px 2px 2px #360b0b;
+    position: fixed;
+    padding-top: 470px;
+    padding-left: 400px;
+    text-align: left;
+    /* margin-inline: auto; */
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;  /* Makes the text invisible at first */
+    animation: typing 4s steps(40) 1s forwards;
+}
+
+/******************* Typing Animation ***************/
+
+@keyframes typing {
+    from {
+        width: 0;
+        opacity: 100;
+    }
+    to {
+        width: 100%;
+        opacity: 100;
+    }
+}
+
+.tanisha-welcome {
+    position: fixed; 
+    padding-top: 600px;
+    padding-right: 20px;
+    bottom: 35px; 
+    left: 1000px; 
+    height: 450px;
+    width: 500px;
+    z-index: 1; 
+}
+
+.tani-dialogue,
+.alex-dialogue {
+    font-family: pixelify sans;
+    font-size: 2.8rem;
+    color: white;
+    display: flex;
+    text-shadow: 2px 2px 2px #360b0b;
+    position: fixed;
+    padding-top: 470px;
+    padding-left: 160px;
+    text-align: left;
+    /* margin-inline: auto; */
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;  /* Makes the text invisible at first */
+    animation: typing 4s steps(40) 1s forwards;
+}
+
+/******************* Bedroom  ***************/
+
+.bedroom-container{
+    position: relative;
+}
+
+.laptop-star {
+    position: fixed; 
+    top: 440px;
+    right: 460px;
+    width: 60px;
+    height: 60px;
+    -webkit-filter: drop-shadow(2px 2px 2px #ffa81d);
+    filter: drop-shadow(2px 2px 2px #ffa81d)
+}
+
+.small-sign {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1;
+}
+
+.bedroom-container a img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.bedroom-container a:hover img {
+    transform: scale(1.2);
+}
+
+.bedroom-text {
+    font-family: pixelify sans;
+    font-size: 3rem;
+    color: white;
+    display: flex;
+    text-shadow: 2px 2px 2px #360b0b;
+    position: fixed;
+    top: 500px;
+    text-align: center;
+    left: 75px;
+    bottom: 10px;
+    z-index: 1;
+}
+
+/******************* Location  ***************/
+
+.location-container {
+    position: relative;  
+}
+
+.location-container img {
+    height: 80px;
+    width: 80px;
+    z-index: 1; 
+    position: fixed;
+    -webkit-filter: drop-shadow(2px 2px 2px #ffa81d);
+    filter: drop-shadow(2px 2px 2px #ffa81d)
+}
+
+.bedroom-star {
+    top: 270px;
+    left: 600px;
+}
+
+.kitchen-star {
+    top: 220px;
+    left: 1020px;
+}
+
+.convenience-star {
+    top: 590px;
+    left: 880px;
+}
+
+.fakestars-container img {
+    height: 80px;
+    width: 80px;
+    padding: 10px;
+}
+
+.fake-star1 {
+    top: 580px;
+    left: 500px;
+}
+
+.fake-star2 {
+    top: 80px;
+    left: 530px;
+}
+
+.location-container a img,
+.button-container a img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.location-container a:hover img,
+.button-container a:hover img {
+    transform: scale(1.2);
+}
+
+/******************* LAPTOP  ***************/
+
+.laptop-body h1 {
+    font-family: 'Pixelify Sans', sans-serif; /* Change font-family */
+    font-size: 60px;  /* Example of font size */
+    color: #000000;   /* Change text color */
+    text-align: center; /* Center the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for effect */
+    margin: 0;  /* Remove margin if needed */
+}
+
+.laptop-body {
+    font-family: 'Pixelify Sans', sans-serif; /* Change font-family */
+    background-image: url('assets-game/laptop.png');
+    background-size: cover;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+    max-width: 800px; 
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-container button {
+    font-family: 'Pixelify Sans', sans-serif; 
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 30px;
+    background-color: #4d9a4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.game-container button:hover {
+    background-color: #39693b;
+}
+
+.game-container #game-screen {
+    background-color: #ffffff;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Popup window styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: none; /* Hidden by default */
+    z-index: 9999;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-close {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-close:hover {
+    background-color: #45a049;
+}
+
+
+
+/******************** MENU ***************/
+
+.menu-container {
+    position: relative;
+    font-family: pixelify sans;
+    color: #60351c;
+}
+
+.menu-text {
+    position: fixed;;
+    font-size: 2rem;
+    text-shadow: 2px 2px 2px #60351c;
+    text-align: center;
+    -webkit-transform: rotate(-28deg); 
+    transform: rotate(-28deg);
+   -moz-transform: rotate(-28deg);    
+    top: 290px;
+    left: 670px;
+}
+
+.menu-container a {
+    color: #60351c;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+.menu-container a:hover p {
+    text-decoration: none;
+    color: #60351c;
+    transform: scale(1.2);
+}
+
+/******************* NAVBAR ***************/
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: left;
+    align-items: cenleftter;
+    padding: 0 10px 20px;
+    z-index: 1000;
+}
+
+.nav-container img {
+    height: 65px;
+    width: 65px;
+    padding: 10px;
+    -webkit-filter: drop-shadow(5px 5px 5px #221501);
+    filter: drop-shadow(5px 5px 5px #221501)
+}
+
+.nav-container a {
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-container a:hover img {
+    transform: scale(1.2);
+}
+
+/******************* KITCHEN ***************/
+
+.kitchen-container{
+    position: relative;
+}
+
+.cuttingboard-star {
+    position: fixed; 
+    top: 440px;
+    right: 460px;
+    width: 60px;
+    height: 60px;
+    -webkit-filter: drop-shadow(2px 2px 2px #ffa81d);
+    filter: drop-shadow(2px 2px 2px #ffa81d)
+}
+
+.oven-star {
+    position: fixed; 
+    top: 510px;
+    right: 810px;
+    width: 60px;
+    height: 60px;
+    -webkit-filter: drop-shadow(2px 2px 2px #ffa81d);
+    filter: drop-shadow(2px 2px 2px #ffa81d)
+}
+
+.cuttingboard-star {
+    position: fixed; 
+    top: 510px;
+    right: 320px;
+    width: 60px;
+    height: 60px;
+    -webkit-filter: drop-shadow(2px 2px 2px #ffa81d);
+    filter: drop-shadow(2px 2px 2px #ffa81d)
+}
+
+.small-sign {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1;
+}
+
+.kitchen-container a img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.kitchen-container a:hover img {
+    transform: scale(1.2);
+}
+
+.kitchen-text,
+.convenience-text {
+    font-family: pixelify sans;
+    font-size: 3rem;
+    color: white;
+    display: flex;
+    text-shadow: 2px 2px 2px #360b0b;
+    position: fixed;
+    top: 500px;
+    text-align: center;
+    left: 94px;
+    bottom: 10px;
+    z-index: 1;
+}
+
+/******************* CONVENIENCE STORE ***************/
+
+.alex-welcome {
+    position: fixed; 
+    padding-top: 620px;
+    padding-right: 20px;
+    bottom: 26px; 
+    left: 1000px; 
+    height: 600px;
+    width: 500px;
+    z-index: 1; 
+}
+
+.convenience-container {
+    position: relative;
+}
+
+.snack {
+    position: relative;
+    margin: 30px;
+    width: 190px;
+    height: 190px;
+    top: 200px;
+    left: 120px;
+    -webkit-filter: drop-shadow(2px 2px 2px #271902);
+    filter: drop-shadow(2px 2px 2px #271902)
+}
+
+.convenience-snacks img {
+    transition: transform 0.3s ease;
+    cursor: pointer; 
+}
+.convenience-snacks img:hover {
+    transform: scale(1.2); 
+}
+
+.coin {
+    position: relative;
+    margin: 30px;
+    width: 190px;
+    height: 190px;
+    top: 200px;
+    left: 120px;
+    -webkit-filter: drop-shadow(2px 2px 2px #271902);
+    filter: drop-shadow(2px 2px 2px #271902)
+}
+
+.coin-selection img {
+    transition: transform 0.3s ease;
+    cursor: pointer; 
+}
+.coin-selection img:hover {
+    transform: scale(1.2); 
+}
+
+.convenience-counter {
+    font-family: pixelify sans;
+    font-size: 1.5rem;
+    float: right;
+    position: fixed;
+    right: 50px;
+    top: 20px;
+}
+
+.done-button-container,
+.retry-button-container {
+    position: relative;
+}
+
+.done-button-container img,
+.retry-button-container img {
+    position: fixed;
+    width: 200px;
+    height: auto;
+    top: 550px;
+    left: 920px;
+    cursor: pointer;
+    z-index: 100000;
+    -webkit-filter: drop-shadow(2px 2px 2px #271902);
+    filter: drop-shadow(2px 2px 2px #271902);
+    transition: transform 0.3s ease;
+    cursor: pointer; 
+}
+.done-button-container img:hover,
+.retry-button-container img:hover {
+    transform: scale(1.2); 
+}
+
+
+/******************* OVEN  ***************/
+/* style.css */
+
+.oven-container{
+    position: relative;
+}
+
+.oven-container p{
+    font-family: 'Pixelify Sans', sans-serif; 
+    font-size: 2.8rem;
+    color: white;
+    text-shadow: 2px 2px 2px #360b0b;
+    padding-top: 440px;
+    padding-left: 440px;
+    text-align: left;
+    left: 50px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .popup p {
+    font-family: 'Pixelify Sans', sans-serif; 
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+  }
+
+  .popup button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Pixelify Sans', sans-serif; 
+  }
+
+  .popup button:hover {
+    background-color: #e07b00;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  
+/* Custom Alert Styles */
+.custom-alert {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.alert-box {
+    font-family: 'Pixelify Sans', sans-serif; 
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.alert-close {
+    font-family: 'Pixelify Sans', sans-serif; 
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.alert-close:hover {
+    font-family: 'Pixelify Sans', sans-serif; 
+    background-color: #0056b3;
+}
+
+.congrats-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.congrats-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.congrats-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px; /* or whatever maximum width you prefer */
+    padding: 20px;
+}
+
+.congrats-screen h2 {
+    font-family: 'Pixelify Sans', sans-serif; 
+    font-size: 100px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}

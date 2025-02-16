@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mind your steps | a game for children</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel=" web icon" href="assets/logo.png" />
+
+    </head>
+    <body>
+        <audio id="bg-music" loop>
+            <source src="assets/background_music.mp3" type="audio/mpeg">
+        </audio>
+        
+        <div class="welcome-container">
+            <img src="assets/jennifer.png" id="jennifer" class="jennifer-welcome animate__animated animate__slideInUp"/>
+            <img src="assets/big-sign.png" id="big-sign" class="big-sign-welcome animate__animated animate__slideInUp"/>
+            <p class="jen-dialogue" id="jen-dialogue">
+                hi there!
+                welcome to the four seasons             
+            </p>
+            <p class="jen-dialogue"  id="jen-dialogue" style="padding-top: 540px;">
+                village, happy to see you!
+            </p>
+        </div>
+    </body>
+
+    <script>
+        document.body.addEventListener('click', function () {
+            window.location.href = 'townscape-tanisha.html';
+        });
+        window.addEventListener('pageshow', function () {
+            const content = document.getElementById('scroll-hero');
+            if (content) {
+                content.classList.remove('visible');
+                void content.offsetWidth;
+                setTimeout(() => {
+                    content.classList.add('visible');
+                }, 50);
+            }
+        });
+
+        let audio = document.getElementById("bg-music");
+        audio.volume = 0.8;
+        function startAudio() {
+            audio.play().then(() => {
+                console.log("Audio playing.");
+                localStorage.setItem("musicPlaying", "true");
+            }).catch(error => console.log("Autoplay blocked: " + error));
+        }
+        if (localStorage.getItem("musicPlaying") === "true") {
+            startAudio();
+        }
+        document.addEventListener("click", startAudio, { once: true });
+        document.addEventListener("keydown", startAudio, { once: true });
+        document.addEventListener("touchstart", startAudio, { once: true });
+    </script>
+</html>

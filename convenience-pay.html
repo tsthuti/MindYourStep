@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mind your steps | a game for children</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel=" web icon" href="assets/logo.png" />
+    </head>
+    <body style="background-image: url('assets/background-convenience.png'); background-size: cover;">
+        <nav class="nav-container">
+            <a href="select-location.html"><img src="assets/home-button.png" class="nav-icon"/></a>
+            <a href="menu.html"><img src="assets/settings-button.png" class="nav-icon"/></a>
+            <a href="progress.html"><img src="assets/check-button.png" class="nav-icon"/></a>
+        </nav>
+        
+        <div class="convenience-container">
+            <img src="assets/target-boy.png" id="alex" class="alex-welcome animate__animated animate__slideInUp"/>
+            <img src="assets/big-sign.png" id="big-sign" class="big-sign-welcome animate__animated animate__slideInUp"/>
+            <p class="alex-dialogue" id="alex-dialogue">
+                your total comes out to $<span id="total-display">0.00</span>! please select</p> 
+            </p>
+            <p class="alex-dialogue" id="alex-dialogue" style="padding-top: 540px;">
+                the right combination of coins to pay!
+            </p>
+        </div>
+
+            <div id="coin-selection" class="coin-selection">
+                <img src="assets/coins/5-cents.png" value="0.05" class="coin"/>
+                <img src="assets/coins/10-cents.png" value="0.10" class="coin"/>
+                <img src="assets/coins/25-cents.png" value="0.25" class="coin"/>
+            </div>
+
+            <p id="payment-feedback"></p>
+
+            <div class="retry-button-container">
+                <img src="assets/retry-button.png" id="reset-button" alt="retry" style="cursor: pointer; display: none;"/>
+            </div>
+
+        <script>
+            let totalAmount = sessionStorage.getItem("totalAmount");
+            if (totalAmount !== null) {
+                console.log("Total Amount: $" + totalAmount);  
+                document.getElementById('total-display').textContent = totalAmount;
+            }
+
+            document.querySelectorAll('.coin').forEach(item => {
+                item.addEventListener('click', function() {
+                    totalAmount -= parseFloat(item.getAttribute('value'));
+                    document.getElementById('total-display').textContent = totalAmount.toFixed(2);
+                });
+            });
+        
+            document.getElementById('done-button').addEventListener('click', function() {
+                sessionStorage.setItem("totalAmount", totalAmount.toFixed(2));
+                window.location.href = "convenience-pay.html"; 
+            });
+        </script>
+    </body>
+</html>
+
+

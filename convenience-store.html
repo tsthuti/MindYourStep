@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mind your steps | a game for children</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel=" web icon" href="assets/logo.png" />
+    </head>
+    <body style="background-image: url('assets/background-convenience.png'); background-size: cover;">
+        <nav class="nav-container">
+            <a href="select-location.html"><img src="assets/home-button.png" class="nav-icon"/></a>
+            <a href="menu.html"><img src="assets/settings-button.png" class="nav-icon"/></a>
+            <a href="progress.html"><img src="assets/check-button.png" class="nav-icon"/></a>
+        </nav>
+
+        <div class="convenience-container">
+            <img src="assets/target-boy.png" id="alex" class="alex-welcome animate__animated animate__slideInUp"/>
+            <img src="assets/big-sign.png" id="big-sign" class="big-sign-welcome animate__animated animate__slideInUp"/>
+            <p class="alex-dialogue" id="alex-dialogue">
+                welcome to the store! click on the items 
+            </p>
+            <p class="alex-dialogue" id="alex-dialogue2" style="padding-top: 540px;">
+                 to buy them, select 'done' to pay!
+            </p>
+            <div class="convenience-counter">
+                <p class="convenience-counter">order total: $<span id="total-display">0.00</span></p>
+            </div>
+        </div>
+
+        <div class="convenience-snacks">
+            <img src="assets/convenience-snacks/chip-bag.png" money-increment="1.15" class="snack"/>
+            <img src="assets/convenience-snacks/chocolate-bar.png" money-increment="0.75" class="snack"/>
+            <img src="assets/convenience-snacks/gum.png" money-increment="0.35" class="snack"/>
+            <img src="assets/convenience-snacks/pop-can.png" money-increment="0.95" class="snack"/>
+        </div>
+
+        <div class="done-button-container">
+            <img src="assets/done-button.png" id="done-button" alt="done" style="cursor: pointer;"/>
+        </div>
+        <script>
+            let totalAmount = 0.00;
+
+            document.querySelectorAll('.snack').forEach(item => {
+                item.addEventListener('click', function() {
+                    totalAmount += parseFloat(item.getAttribute('money-increment'));
+                    document.getElementById('total-display').textContent = totalAmount.toFixed(2);
+                });
+            });
+        
+            document.getElementById('done-button').addEventListener('click', function() {
+                sessionStorage.setItem("totalAmount", totalAmount.toFixed(2));
+                window.location.href = "convenience-pay.html"; 
+            });
+        </script>    
+    </body>
+</html>

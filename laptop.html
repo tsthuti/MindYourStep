@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mind your steps | a game for children</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel=" web icon" href="assets/logo.png" />
+    </head>
+    <body class="laptop-body" style="background-image: url('assets/laptop.png'); background-size: cover;">
+        <nav class="nav-container">
+            <a href="select-location.html"><img src="assets/home-button.png" class="nav-icon"/></a>
+            <a href="menu.html"><img src="assets/settings-button.png" class="nav-icon"/></a>
+            <a href="progress.html"><img src="assets/check-button.png" class="nav-icon"/></a>
+        </nav>
+        <div id="game-container" class="game-container animate__animated animate__slideInUp">
+            <h1>Cyber Detective</h1>
+            <div id="game-intro">
+              <p>
+                Welcome Detective! Your mission is to <br />solve cybersecurity cases.
+              </p>
+              <button id="start-game" class="start-button">Start Game</button>
+            </div>
+            <div id="game-screen" style="display: none">
+              <div id="scenario"></div>
+              <div id="choices"></div>
+            </div>
+          </div>
+          <div id="popup" class="popup" style="display: none">
+            <div class="popup-content">
+              <p id="popup-message"></p>
+              <button id="popup-close" class="popup-close">Close</button>
+            </div>
+          </div>
+          <script src="game.js"></script>
+</body>
+
+<script>
+    document.getElementById("start-game").addEventListener("click", startGame);
+  
+    const scenarios = [
+      {
+        question: "Someone asks for your password. What do you do?",
+        choices: [
+          {
+            text: "Give them my password.",
+            correct: false,
+            message: "That's not safe! Always protect your password",
+          },
+          {
+            text: "Tell them no.",
+            correct: true,
+            message:
+              "Good job! Always be cautious and keep your password secure.",
+          },
+          {
+            text: "Log in for them on their device",
+            correct: false,
+            message:
+              "Never log in on someone elses device! Your password may get saved on there.",
+          },
+        ],
+      },
+      {
+        question:
+          "You receive a friend request from someone you don't know on your social media account. What do you do?",
+        choices: [
+          {
+            text: "Accept the request, they might be nice!",
+            correct: false,
+            message:
+              "It's always better to be cautious when talking to people you don't know.",
+          },
+          {
+            text: "Ignore the request.",
+            correct: true,
+            message:
+              "Great choice! Ignoring suspicious accounts helps keep you safe.",
+          },
+          {
+            text: "Send them a message to find out who they are.",
+            correct: false,
+            message: "It's safer not to engage with strangers online.",
+          },
+        ],
+      },
+      {
+        question:
+          "You see a pop-up on your screen asking you to click a button to get a free toy. What do you do?",
+        choices: [
+          {
+            text: "Click the button to get the toy.",
+            correct: false,
+            message: "This might be a trick! Pop-ups like this can be dangerous.",
+          },
+          {
+            text: "Close the pop-up and tell an adult.",
+            correct: true,
+            message:
+              "Great choice! It's always a good idea to tell an adult about pop-ups or anything suspicious.",
+          },
+          {
+            text: "Ignore it and keep playing.",
+            correct: false,
+            message:
+              "Even ignoring it isn't always safe. It's better to tell an adult about it.",
+          },
+        ],
+      },
+    ];
+  
+    let currentScenario = 0;
+    let correctAnswers = 0; // Track correct answers
+  
+    function startGame() {
+      document.getElementById("game-intro").style.display = "none";
+      document.getElementById("game-screen").style.display = "block";
+      displayScenario();
+    }
+  
+    function displayScenario() {
+      const scenario = scenarios[currentScenario];
+      document.getElementById("scenario").innerText = scenario.question;
+      const choicesDiv = document.getElementById("choices");
+      choicesDiv.innerHTML = ""; // Clear previous choices
+  
+      scenario.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
+        button.innerText = choice.text;
+        button.addEventListener("click", () => handleChoice(choice, index));
+        choicesDiv.appendChild(button);
+      });
+    }
+  
+    function handleChoice(choice, index) {
+      // Track if the choice is correct
+      if (choice.correct) {
+        correctAnswers++; // Increment correct answers
+      }
+  
+      // Show the message in the custom popup before clicking another option
+      showPopup(choice.message);
+  
+      // Wait for the user to acknowledge the popup before proceeding to the next scenario
+      setTimeout(function () {
+        currentScenario++;
+        if (currentScenario < scenarios.length) {
+          displayScenario();
+        } else {
+          showCompletionScreen(); // Show final score
+        }
+      }, 2000); // Timeout before continuing
+    }
+  
+    // Function to show the popup
+    function showPopup(message) {
+      const popup = document.getElementById("popup");
+      const popupMessage = document.getElementById("popup-message");
+      popupMessage.innerText = message;
+      popup.style.display = "block"; // Show the popup
+    }
+  
+    // Ensure the popup close button works outside the handleChoice function
+    document.getElementById("popup-close").addEventListener("click", () => {
+      const popup = document.getElementById("popup");
+      popup.style.display = "none"; // Hide the popup
+    });
+  
+    // Function to show the completion screen
+    function showCompletionScreen() {
+      document.getElementById("game-screen").style.display = "none"; // Hide the game screen
+      const completionScreen = document.createElement("div");
+      completionScreen.innerHTML = `
+          <h2>Game Completed!</h2>
+          <p>You answered ${correctAnswers} out of ${scenarios.length} questions correctly.</p>
+          <button onclick="restartGame()">Restart Game</button>
+      `;
+      document.getElementById("game-container").appendChild(completionScreen);
+    }
+  
+    // Function to restart the game
+    function restartGame() {
+      currentScenario = 0;
+      correctAnswers = 0;
+      document.getElementById("game-container").innerHTML = `
+          <h1>Cyber Detective</h1>
+          <div id="game-intro">
+              <p>Welcome Detective! Your mission is to solve cybersecurity cases.</p>
+              <button id="start-game" class="start-button">Start Game</button>
+          </div>
+      `;
+      document.getElementById("start-game").addEventListener("click", startGame);
+    }
+  </script>
+  
